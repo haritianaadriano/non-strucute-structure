@@ -1,4 +1,4 @@
-package com.data.research.controller;
+package com.data.research.service;
 
 import com.data.research.model.FilmDocument;
 import com.data.research.repository.FilmDocumentRepository;
