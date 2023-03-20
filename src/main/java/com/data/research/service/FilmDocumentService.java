@@ -25,7 +25,7 @@ public class FilmDocumentService {
                 file.getBytes())
         );
         newFilmDocument = repository.insert(newFilmDocument);
-        return("the file with id#"+newFilmDocument.get_id()+" was store successfully");
+        return newFilmDocument.get_id();
     }
 
     //GET image
