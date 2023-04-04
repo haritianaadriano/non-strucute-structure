@@ -1,9 +1,7 @@
-package com.data.research.model;
+package com.data.research.model.rest;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.data.research.model.rest.AuthorEntity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,14 +10,17 @@ import lombok.Setter;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "\"author\"")
+@Table(name = "film")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthorEntity {
+public class FIlmEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = true)
+    private AuthorEntity author;
 }
