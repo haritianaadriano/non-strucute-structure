@@ -1,1 +1,1 @@
-This is a research about a database non structured and  a database structured.
+This is a research about a database non structured and  a database structured. Not only but using grapqhql.
