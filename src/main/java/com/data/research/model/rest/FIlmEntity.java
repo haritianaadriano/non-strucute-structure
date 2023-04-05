@@ -3,6 +3,7 @@ package com.data.research.model.rest;
 import com.data.research.model.rest.AuthorEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class FIlmEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
