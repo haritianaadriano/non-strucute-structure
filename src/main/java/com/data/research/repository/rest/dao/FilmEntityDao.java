@@ -4,6 +4,7 @@ import com.data.research.model.rest.FIlmEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -15,9 +16,20 @@ import java.util.List;
 public class FilmEntityDao{
     private EntityManager entityManager;
 
-    public List<FIlmEntity> findByCriteria(String authorName, int idAuthor){
+    public List<FIlmEntity> findByCriteria(String authorName){
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<FIlmEntity> query = builder.createQuery(FIlmEntity.class);
         Root<FIlmEntity> root = query.from(FIlmEntity.class);
+
+        Predicate hasFilmEntityAuthorName =
+            builder.or(
+                builder.like(builder.lower(root.get("author.name")),"%" + authorName + "%" ),
+                    builder.like(root.get("author.name"), "%" + authorName + "%")
+            );
+        query
+                .where(builder.and(hasFilmEntityAuthorName));
+
+        return entityManager.createQuery(query)
+                .getResultList();
     }
 }
