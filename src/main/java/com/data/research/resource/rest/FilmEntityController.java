@@ -5,6 +5,7 @@ import com.data.research.service.rest.FilmEntityService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,5 +23,10 @@ public class FilmEntityController {
     @PostMapping("/films")
     public List<FIlmEntity> saveFilms(List<FIlmEntity> toSave){
         return service.saveAll(toSave);
+    }
+
+    @GetMapping("/films")
+    public List<FIlmEntity> getFIlmsByAuthorName(@RequestParam("author")String authorName){
+        return service.getFilmeByAuthorName(authorName);
     }
 }
