@@ -3,6 +3,7 @@ package com.data.research.service.rest;
 import com.data.research.model.rest.FIlmEntity;
 import com.data.research.repository.rest.FilmEntityRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +13,11 @@ import java.util.List;
 public class FilmEntityService {
     private FilmEntityRepository repository;
 
-    private List<FIlmEntity> saveAll(List<FIlmEntity> toSave){
+    public List<FIlmEntity> saveAll(List<FIlmEntity> toSave){
         return repository.saveAll(toSave);
     }
 
-    private List<FIlmEntity> getAll(){
+    public List<FIlmEntity> getAll(){
         return repository.findAll();
     }
 }
