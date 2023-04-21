@@ -16,17 +16,12 @@ public class FilmEntityController {
     private FilmEntityService service;
 
     @GetMapping("/films")
-    public List<FIlmEntity> getFilms(){
-        return service.getAll();
+    public List<FIlmEntity> getFilms(@RequestParam(name = "author_name", required = false)String filmName){
+        return service.getFilmByCriteria(filmName);
     }
 
     @PostMapping("/films")
     public List<FIlmEntity> saveFilms(List<FIlmEntity> toSave){
         return service.saveAll(toSave);
-    }
-
-    @GetMapping("/films")
-    public List<FIlmEntity> getFIlmsByAuthorName(@RequestParam("author")String authorName){
-        return service.getFilmeByAuthorName(authorName);
     }
 }
