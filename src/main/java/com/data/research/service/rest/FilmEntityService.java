@@ -19,11 +19,7 @@ public class FilmEntityService {
         return repository.saveAll(toSave);
     }
 
-    public List<FIlmEntity> getAll(){
-        return repository.findAll();
-    }
-
-    public List<FIlmEntity> getFilmeByAuthorName(String name){
-        return dao.findByCriteria(name);
+    public List<FIlmEntity> getFilmByCriteria(String filmName){
+        return dao.findByCriteria(filmName);
     }
 }
