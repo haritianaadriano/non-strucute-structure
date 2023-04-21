@@ -21,13 +21,15 @@ public class FilmEntityDao{
         CriteriaQuery<FIlmEntity> query = builder.createQuery(FIlmEntity.class);
         Root<FIlmEntity> root = query.from(FIlmEntity.class);
 
-        Predicate hasFilmName =
-            builder.or(
-                builder.like(builder.lower(root.get("name")),"%" + filmName + "%" ),
-                    builder.like(root.get("name"), "%" + filmName + "%")
-            );
-        query
-                .where(builder.and(hasFilmName));
+        if(filmName != null) {
+            Predicate hasFilmName =
+                    builder.or(
+                            builder.like(builder.lower(root.get("name")), "%" + filmName + "%"),
+                            builder.like(root.get("name"), "%" + filmName + "%")
+                    );
+            query
+                    .where(builder.and(hasFilmName));
+        }
 
         return entityManager.createQuery(query)
                 .getResultList();
