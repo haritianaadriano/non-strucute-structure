@@ -1,4 +1,4 @@
 create table if not exists "author" (
-    id int primary key not null,
+    id int serial primary key not null,
     name varchar not null
 )
