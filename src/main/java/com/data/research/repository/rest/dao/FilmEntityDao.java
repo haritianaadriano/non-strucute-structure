@@ -16,18 +16,18 @@ import java.util.List;
 public class FilmEntityDao{
     private EntityManager entityManager;
 
-    public List<FIlmEntity> findByCriteria(String authorName){
+    public List<FIlmEntity> findByCriteria(String filmName){
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<FIlmEntity> query = builder.createQuery(FIlmEntity.class);
         Root<FIlmEntity> root = query.from(FIlmEntity.class);
 
-        Predicate hasFilmEntityAuthorName =
+        Predicate hasFilmName =
             builder.or(
-                builder.like(builder.lower(root.get("author.name")),"%" + authorName + "%" ),
-                    builder.like(root.get("author.name"), "%" + authorName + "%")
+                builder.like(builder.lower(root.get("name")),"%" + filmName + "%" ),
+                    builder.like(root.get("name"), "%" + filmName + "%")
             );
         query
-                .where(builder.and(hasFilmEntityAuthorName));
+                .where(builder.and(hasFilmName));
 
         return entityManager.createQuery(query)
                 .getResultList();
