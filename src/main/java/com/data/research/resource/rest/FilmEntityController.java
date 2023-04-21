@@ -16,7 +16,7 @@ public class FilmEntityController {
     private FilmEntityService service;
 
     @GetMapping("/films")
-    public List<FIlmEntity> getFilms(@RequestParam(name = "author_name", required = false)String filmName){
+    public List<FIlmEntity> getFilms(@RequestParam(name = "film-name", required = false)String filmName){
         return service.getFilmByCriteria(filmName);
     }
 
